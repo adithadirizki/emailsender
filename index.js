@@ -7,7 +7,7 @@ const fs = require('fs');
 const moment = require('moment');
 
 // email yang akan dikirim
-const emailTo = [];
+const { emailTo } = require('./config');
 
 async function main() {
   if (emailTo.length < 1) {
@@ -47,23 +47,10 @@ async function main() {
     console.log('====================================');
     console.log('Start schedule:', start);
 
-    const [rows] = await connection.execute('SELECT * FROM stores');
-    const fields = [
-      'id',
-      'name',
-      'fullname',
-      'enabled',
-      'created',
-      'super',
-      'ending_balance',
-      'parent_id',
-      'path',
-      'priceplan_name',
-      'markup',
-      'default_markup',
-      'markup_sum',
-      'location_id',
-    ];
+    const [rows] = await connection.execute(
+      'SELECT name, ending_balance, priceplan_name, markup FROM stores'
+    );
+    const fields = ['name', 'ending_balance', 'priceplan_name', 'markup'];
 
     const date = moment().format('YYYY_MM_DD_HH_mm_ss');
     const filename = 'report_endball_customer_' + date + '.csv';
