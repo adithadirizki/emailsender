@@ -1,0 +1,10 @@
+technology
+1. nodejs v16.13.0
+2. npm v8.1.0
+
+> git clone https://github.com/adithadirizki/emailsender.git
+> cd emailsender
+- copy file .env.example jadi .env
+- setting isi .env
+> npm install
+> node index.js

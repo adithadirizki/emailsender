@@ -12,6 +12,7 @@ const { emailTo } = require('./config');
 async function main() {
   if (emailTo.length < 1) {
     console.log('Email yang akan dikirim harus diisi');
+    return;
   }
 
   console.log('Connecting to database');
